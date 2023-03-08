@@ -40,7 +40,7 @@ jobs:
    - name: Set up SSH key
      uses: webfactory/ssh-agent@v0.7.0
      with:
-       ssh-private-key: ${{ secrets.SSH_PRIVATEKEY }}
+       GITHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
    - name: Install dependencies
      run: |
        sudo apt-get update && \
