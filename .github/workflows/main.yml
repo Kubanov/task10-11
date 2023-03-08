@@ -18,7 +18,7 @@ jobs:
       - name: Login to DockerHub
         uses: docker/login-action@v1
         with:
-          username: ${{ secrets.DOCKER_USERNAME }}
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           run: echo "SSH_USER (***) = ${SSH_USER}"
 
@@ -28,7 +28,7 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/myapp
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/task10-11
     
   deploy:
    if: github.ref != 'refs/heads/master'
@@ -47,8 +47,8 @@ jobs:
        sudo apt-get install -y ansible
    - name: Deploy app
      env:
-       DOCKER_IMAGE: ${{ secrets.DOCKER_USERNAME }}/myapp
-       DOCKER_REGISTRY_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+       DOCKER_IMAGE: ${{ secrets.DOCKERHUB_USERNAME }}/task10-11
+       DOCKER_REGISTRY_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
        DOCKER_REGISTRY_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
      run: |
        ansible-playbook --user ${{ secrets.SSH_USER }} -i inventory.yml playbook.yml
