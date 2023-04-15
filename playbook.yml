@@ -8,5 +8,5 @@
         name: '{{ lookup("env","SERVICE_NAME") }}'
         image: '{{ lookup("env","image") }}'
         ports:
-          - "8181:8181"
+          - "8080:8080"
         restart_policy: always
