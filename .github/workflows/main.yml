@@ -6,7 +6,7 @@ on:
       - main
 
 env:
-  prod_ip_ubuntu: 192.168.73.187
+  prod_ip_ubuntu: 192.168.56.1
 
 jobs:
   build:
